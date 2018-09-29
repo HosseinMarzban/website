@@ -1,9 +1,6 @@
-<<<<<<< HEAD
-# Tehranjs vuex workshop
+# Tehranjs official website
 
-> Application state with Vuex
-
-## Development and Production Setup
+### Development and Production Setup
 
 ```bash
 # install dependencies
@@ -21,7 +18,3 @@ npm run build --report
 # run node server API
 npm run server
 ```
-=======
-# website
-Tehranjs official website
->>>>>>> fbf18c678990e95c8b09eff803e1028f51a777ba
