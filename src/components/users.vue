@@ -1,20 +1,20 @@
 <template>
 <el-row :gutter="64">
-	<el-col v-for="(teacher, index) in teachersList" :xs="24" :sm="12" :md="8" :lg="8" :xl="8" :key="index">
-		<div class="brick" v-on:click.prevent="goTo(teacher.id)">
+	<el-col v-for="(user, index) in usersList" :xs="24" :sm="12" :md="8" :lg="8" :xl="8" :key="index">
+		<div class="brick" v-on:click.prevent="goTo(user.id)">
 			<div class="brick__image">
-				<img :style="{backgroundImage: 'url('+ teacher.image +')'}" class="brick__image-inner">
+				<img :style="{backgroundImage: 'url('+ user.avatar +')'}" class="brick__image-inner">
 			</div>
-			<!-- End - Brick/image -->
+			<!-- End - Brick/avatar -->
 			<div class="brick__caption">
 				<div class="brick__caption-upper">
-					<a href="#" class="brick__title">{{ teacher.nameFa }}</a>
-					<span class="brick__tagline">{{ teacher.descriptionFa }}</span>
+					<a href="#" class="brick__title">{{ user.name + " " + user.family }}</a>
+					<span class="brick__tagline">{{ user.headline }}</span>
 				</div>
 				<!-- End - Caption/upper -->
 				<div class="brick__caption-lower">
 					<ul class="brick__caption-lower__social-list">
-						<li v-for="(o, secondIndex) in teacher.social" :key="secondIndex">
+						<li v-for="(o, secondIndex) in user.social" :key="secondIndex">
 							<el-tooltip :content="o.title" effect="dark" placement="top">
 								<a :href="o.link" target="_blank" rel="nofollow"><i :class="['fab', 'fa-'+ o.icon]"/> </a>
 							</el-tooltip>
@@ -36,32 +36,40 @@
 import { mapState } from "vuex";
 
 export default {
-	name: "Teachers",
+	name: "Users",
 	props: {
 		max: {
 			type: Number,
-			required: false
-		}
+			required: false,
+		},
+		want: {
+			type: String,
+			default: "users",
+		},
 	},
 	data: () => ({
-		teachersList: []
+		usersList: [],
 	}),
 	mounted() {
-		this.teachersList = this.teachers.slice();
+		this.usersList = this.users.slice();
 
-		// set max display teachers
+		if (this.want === "teachers") {
+			this.usersList = this.usersList.filter(({ hasTeachingExperience }) => !!hasTeachingExperience);
+		}
+
+		// set max display users
 		if (this.max) {
-			this.teachersList = this.teachersList.slice(0, this.max);
+			this.usersList = this.usersList.slice(0, this.max);
 		}
 	},
 	computed: {
-		...mapState(["teachers"])
+		...mapState(["users"]),
 	},
 	methods: {
 		goTo(id) {
-			this.$router.push({ path: `/teachers/${id}` });
-		}
-	}
+			this.$router.push({ path: `/users/${id}` });
+		},
+	},
 };
 </script>
 

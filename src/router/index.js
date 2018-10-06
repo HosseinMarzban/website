@@ -19,14 +19,14 @@ export default new Router({
 			component: () => import("@/components/home"),
 		},
 		{
-			path: "/teachers",
+			path: "/users",
 			name: "Teachers",
-			component: () => import("@/routes/teachers"),
+			component: () => import("@/routes/users"),
 		},
 		{
-			path: "/teachers/:username",
+			path: "/users/:username",
 			name: "Teachers-profile",
-			component: () => import("@/routes/teacher-profile"),
+			component: () => import("@/routes/profile"),
 		},
 	],
 });

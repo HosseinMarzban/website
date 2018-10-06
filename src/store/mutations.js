@@ -1,6 +1,6 @@
 // mutations
 const mutations = {
-	addTeachers(state, payload) {
+	addUsers(state, payload) {
 		state.teachers = payload;
 		state.loading = false;
 	},

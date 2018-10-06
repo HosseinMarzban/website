@@ -19,7 +19,7 @@ Vue.config.debug = !isProd();
 Vue.config.devtools = !isProd();
 Vue.config.productionTip = isProd();
 
-axios.defaults.baseURL = "https://localhost:3443";
+axios.defaults.baseURL = "https://raw.githubusercontent.com";
 
 function isProd() {
 	return process.env.NODE_ENV === "production";
@@ -28,5 +28,5 @@ function isProd() {
 new Vue({
 	store,
 	router,
-	render: h => h(App)
+	render: h => h(App),
 }).$mount("#app");

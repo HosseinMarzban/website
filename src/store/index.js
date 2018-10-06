@@ -10,7 +10,7 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
 	state: {
 		workshops: [],
-		teachers: [],
+		users: [],
 		loading: true,
 	},
 	getters,

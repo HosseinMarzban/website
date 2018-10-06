@@ -95,19 +95,19 @@ export default {
 		}
 	},
 	data: () => ({
-		teacher: {},
+		user: {},
 		existTeacher: true
 	}),
 	computed: {
-		...mapState(["teachers"])
+		...mapState(["users"])
 	},
 	mounted() {
-		const findedTeacher = find(this.teachers, ({ username }) => username === this.username);
+		const findedUser = find(this.users, ({ username }) => username === this.username);
 
-		if(isEmpty(findedTeacher)) {
+		if(isEmpty(findedUser)) {
 			this.existTeacher = false;
 		}else{
-			this.teacher = findedTeacher;
+			this.user = findedUser;
 		}
 	}
 };

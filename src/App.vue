@@ -39,10 +39,11 @@
 
 <script>
 import { mapActions } from "vuex";
+
 export default {
 	name: "Root",
 	data: () => ({
-		activeIndex: "/"
+		activeIndex: "/",
 	}),
 	updated() {
 		this.updateActiveIndex();
@@ -50,17 +51,17 @@ export default {
 	mounted() {
 		this.updateActiveIndex();
 
-		this.getTeachers();
+		this.getUsers();
 	},
 	methods: {
-		...mapActions(["getTeachers"]),
+		...mapActions(["getUsers"]),
 		updateActiveIndex() {
 			const splitedPath = this.$router.history.current.fullPath.split("/");
 			const activeRoute = splitedPath.length > 1 ? `/${splitedPath[1]}` : "/";
 
 			this.activeIndex = activeRoute;
-		}
-	}
+		},
+	},
 };
 </script>
 

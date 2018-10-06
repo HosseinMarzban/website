@@ -1,0 +1,15 @@
+[
+	{
+		"id": 1,
+		"name": "آموزش مقدماتی redux و react",
+		"description": "آموزش در سطح مقدماتی و متوسط ریداکس و وب پک در ۲ ساعت",
+		"author": {
+			"name": "کوشا ساعی",
+			"id": 1
+		},
+		"date_begin": "1397/07/02",
+		"created_at": "1397/06/27",
+		"image": "https://cms-assets.tutsplus.com/uploads/users/831/posts/25791/preview_image/webpack-tuts.jpg",
+		"interested_users": ["ali-master"]
+	}
+]
