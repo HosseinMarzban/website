@@ -13,6 +13,7 @@
 					<el-menu-item index="/about">درباره ما</el-menu-item>
 					<el-menu-item index="/workshops">ورکشاپ ها</el-menu-item>
 					<el-menu-item index="/teachers">مدرسین</el-menu-item>
+					<el-menu-item index="/users">همراهان ما</el-menu-item>
 				</el-menu>
 			</el-col>
 		</el-row>
@@ -38,7 +39,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapMutations } from "vuex";
 
 export default {
 	name: "Root",
@@ -51,10 +52,14 @@ export default {
 	mounted() {
 		this.updateActiveIndex();
 
-		this.getUsers();
+		Promise.all([this.getUsers(), this.getWorkshops()]).then(() => {
+			this.setLoading(false);
+		});
 	},
 	methods: {
-		...mapActions(["getUsers"]),
+		...mapMutations(["setLoading"]),
+		...mapActions(["getUsers", "getWorkshops"]),
+
 		updateActiveIndex() {
 			const splitedPath = this.$router.history.current.fullPath.split("/");
 			const activeRoute = splitedPath.length > 1 ? `/${splitedPath[1]}` : "/";

@@ -1,8 +1,13 @@
 // mutations
 const mutations = {
 	addUsers(state, payload) {
-		state.teachers = payload;
-		state.loading = false;
+		state.users = payload;
+	},
+	addWorkshops(state, payload) {
+		state.workshops = payload;
+	},
+	setLoading(state, payload) {
+		state.loading = payload;
 	},
 };
 

@@ -4,13 +4,21 @@ import { usersURL, workshopsURL } from "@/config";
 
 const actions = {
 	getUsers({ commit }) {
-		axios.get(usersURL).then(({ data: users }) => {
-			commit("addUsers", users);
+		return new Promise(resolve => {
+			axios.get(usersURL).then(({ data: users }) => {
+				commit("addUsers", users);
+
+				resolve(users);
+			});
 		});
 	},
 	getWorkshops({ commit }) {
-		axios.get(workshopsURL).then(({ data: workshops }) => {
-			commit("addWorkshops", workshops);
+		return new Promise(resolve => {
+			axios.get(workshopsURL).then(({ data: workshops }) => {
+				commit("addWorkshops", workshops);
+
+				resolve(workshops);
+			});
 		});
 	},
 };

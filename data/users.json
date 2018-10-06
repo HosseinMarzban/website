@@ -2,14 +2,14 @@
 	{
 		"id": "1",
 		"name": "Ali",
-		"family": "Torki",
+		"lastName": "Torki",
 		"location": "Tehran",
 		"username": "ali-torki",
 		"joined_at": "1394/1/12",
 		"email": "ali_4286@live.com",
 		"headline": "Front-end engineer",
 		"hasTeachingExperience": true,
-		"avatar": "https://madewithvuejs.com/uploads/02/02/image-1.png",
+		"avatar": "https://avatars2.githubusercontent.com/u/9049092?s=460&v=4",
 		"interested": [
 			"Functional progaming",
 			"Node.js",
@@ -22,19 +22,16 @@
 		],
 		"social": [
 			{
-				"link": "#",
-				"icon": "linkedin",
+				"link": "https://linkedin.com/in/alitorki",
 				"title": "Linkedin"
 			},
 			{
-				"link": "#",
-				"icon": "github",
+				"link": "https://github.com/ali-master",
 				"title": "Github"
 			},
 			{
-				"link": "#",
-				"icon": "medium",
-				"title": "Medium.com"
+				"link": "https://twitter.com/alitorki_24",
+				"title": "twitter.com"
 			}
 		]
 	}
