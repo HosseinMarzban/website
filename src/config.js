@@ -1,3 +1,3 @@
-export const usersURL = "/TehranJS-Workshops/website/master/data/teachers.json";
+export const usersURL = "/TehranJS-Workshops/website/master/data/users.json";
 export const workshopsURL =
-	"/TehranJS-Workshops/website/master/data/teachers.json";
+	"/TehranJS-Workshops/website/master/data/workshops.json";
