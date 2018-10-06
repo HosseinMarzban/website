@@ -3,8 +3,7 @@
 	<el-header class="app-header">
 		<el-row type="flex" justify="center">
 			<el-col :span="18">
-				<el-menu :default-active="activeIndex"
-				         router
+				<el-menu :default-active="activeIndex" router
 				         class="top-navigation"
 				         mode="horizontal"
 				         background-color="#fecc44"
@@ -39,6 +38,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
 	name: "Root",
 	data: () => ({
@@ -47,10 +47,15 @@ export default {
 	updated() {
 		this.updateActiveIndex();
 	},
-	mounted() {
+	mounted(){
 		this.updateActiveIndex();
+
+		this.getTeachers().then(teachers => {
+			console.log(teachers)
+		});
 	},
 	methods: {
+		...mapActions(["getTeachers"]),
 		updateActiveIndex() {
 			const splitedPath = this.$router.history.current.fullPath.split("/");
 			const activeRoute = splitedPath.length > 1 ? `/${splitedPath[1]}` : "/";

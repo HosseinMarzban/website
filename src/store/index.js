@@ -5,14 +5,12 @@ import actions from "./actions";
 import getters from "./getters";
 import mutations from "./mutations";
 
-import teachers from "../../data/teachers";
-
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
 	state: {
 		workshops: [],
-		teachers,
+		teachers: [],
 	},
 	getters,
 	actions,

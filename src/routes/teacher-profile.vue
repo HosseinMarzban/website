@@ -1,87 +1,110 @@
 <template>
-	<el-main>
-		<el-main class="profile-wrap">
-			<div class="profile-wrap__image">
-				<img src="https://avatars2.githubusercontent.com/u/9049092?s=460&v=4" border="0" />
-			</div>
-			<div class="profile-wrap__cnt">
-				<div class="profile-wrap__name">علی ترکی</div>
-				<div class="profile-wrap__txt">Creative Front-end developer at <strong>VistaMehr</strong></div>
-				<div class="profile-wrap-loc">
-					<span class="profile-wrap-loc__txt">ایران٬ تهران</span>
-					<span class="profile-wrap-loc__icon">
+<el-main>
+	<el-main class="profile-wrap">
+		<div class="profile-wrap__image">
+			<img src="https://avatars2.githubusercontent.com/u/9049092?s=460&v=4" border="0" />
+		</div>
+		<div class="profile-wrap__cnt">
+			<div class="profile-wrap__name">علی ترکی</div>
+			<div class="profile-wrap__txt">Creative Front-end developer at <strong>VistaMehr</strong></div>
+			<div class="profile-wrap-loc">
+				<span class="profile-wrap-loc__txt">ایران٬ تهران</span>
+				<span class="profile-wrap-loc__icon">
 						<i class="fa fa-map-marker-alt"></i>
 					</span>
+			</div>
+			<!-- /location -->
+
+			<div class="profile-wrap-inf">
+				<div class="profile-wrap-inf__item">
+					<div class="profile-wrap-inf__title">1598</div>
+					<div class="profile-wrap-inf__txt">مورد تدریس</div>
 				</div>
-				<!-- /location -->
 
-				<div class="profile-wrap-inf">
-					<div class="profile-wrap-inf__item">
-						<div class="profile-wrap-inf__title">1598</div>
-						<div class="profile-wrap-inf__txt">مورد تدریس</div>
-					</div>
-
-					<div class="profile-wrap-inf__item">
-						<div class="profile-wrap-inf__title">65</div>
-						<div class="profile-wrap-inf__txt">روز همکاری</div>
-					</div>
-
-					<div class="profile-wrap-inf__item">
-						<div class="profile-wrap-inf__title">123</div>
-						<div class="profile-wrap-inf__txt">حضور در کلاسها</div>
-					</div>
+				<div class="profile-wrap-inf__item">
+					<div class="profile-wrap-inf__title">65</div>
+					<div class="profile-wrap-inf__txt">روز همکاری</div>
 				</div>
-				<!-- /info -->
 
-				<div class="profile-wrap-social">
-					<a href="#" class="profile-wrap-social__item github" target="_blank">
+				<div class="profile-wrap-inf__item">
+					<div class="profile-wrap-inf__title">123</div>
+					<div class="profile-wrap-inf__txt">حضور در کلاسها</div>
+				</div>
+			</div>
+			<!-- /info -->
+
+			<div class="profile-wrap-social">
+				<a href="#" class="profile-wrap-social__item github" target="_blank">
 						<span class="icon-font">
 							<i class="fab fa-github"></i>
 						</span>
 					</a>
-					<a href="#" class="profile-wrap-social__item twitter" target="_blank">
+				<a href="#" class="profile-wrap-social__item twitter" target="_blank">
 						<span class="icon-font">
 							<i class="fab fa-twitter"></i>
 						</span>
 					</a>
-					<a href="#" class="profile-wrap-social__item facebook" target="_blank">
+				<a href="#" class="profile-wrap-social__item facebook" target="_blank">
 						<span class="icon-font">
 							<i class="fab fa-facebook"></i>
 						</span>
 					</a>
-					<a href="#" class="profile-wrap-social__item linkedin" target="_blank">
+				<a href="#" class="profile-wrap-social__item linkedin" target="_blank">
 						<span class="icon-font">
 							<i class="fab fa-linkedin"></i>
 						</span>
 					</a>
-					<a href="#" class="profile-wrap-social__item codepen" target="_blank">
+				<a href="#" class="profile-wrap-social__item codepen" target="_blank">
 						<span class="icon-font">
 							<i class="fab fa-codepen"></i>
 						</span>
 					</a>
-					<a href="#" class="profile-wrap-social__item email" target="_blank">
+				<a href="#" class="profile-wrap-social__item email" target="_blank">
 						<span class="icon-font">
 							<i class="fas fa-at"></i>
 						</span>
 					</a>
-					<a href="#" class="profile-wrap-social__item link" target="_blank">
+				<a href="#" class="profile-wrap-social__item link" target="_blank">
 						<span class="icon-font">
 							<i class="fa fa-link"></i>
 						</span>
 					</a>
-				</div>
 			</div>
-		</el-main><!-- /profile -->
-		<el-main>
-			<h2 class="route-title">آخرین ورکشاپ های برگزار شده توسط <strong>علی ترکی</strong></h2>
-			مقدار داخلی
-		</el-main>
+		</div>
 	</el-main>
+	<!-- /profile -->
+	<el-main>
+		<h2 class="route-title">آخرین ورکشاپ های برگزار شده توسط <strong>علی ترکی</strong></h2>
+		مقدار داخلی
+	</el-main>
+</el-main>
 </template>
 
 <script>
+import { mapState } from "vuex";
+
+import find from "lodash/find";
+import isEmpty from "lodash/isEmpty";
+
 export default {
-	name: "Profile"
+	name: "Profile",
+	data: () => ({
+		teacher: {},
+		existTeacher: true
+	}),
+	computed: {
+		...mapState(["teachers"])
+	},
+	mounted() {
+		const id = parseInt(this.$route.params.id, 10);
+		const findedTeacher = find(this.teachers, ({ id: teacherId }) => teacherId === id);
+
+		if(isEmpty(findedTeacher)) {
+			this.existTeacher = false;
+		}else{
+			this.teacher = findedTeacher;
+		}
+	}
 };
 </script>
 
