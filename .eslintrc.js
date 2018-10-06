@@ -23,7 +23,7 @@ module.exports = {
 		"prettier",
 	],
 	// required to lint *.vue files
-	plugins: ["vue", "prettier"],
+	plugins: ["vue"],
 	// add your custom rules here
 	rules: {
 		"space-before-function-paren": "off",
