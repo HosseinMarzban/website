@@ -1,146 +1,29 @@
 [
-  {
-    "nameFa": "علی ترکی",
-    "nameEn": "Ali Torki",
-    "descriptionFa": "یک برنامه نویس خلاق",
-    "descriptionEn": "A Creative Front-end Engineer",
-    "image": "https://madewithvuejs.com/uploads/02/02/image-1.png",
-    "social": [
-      {
-        "link": "#",
-        "icon": "linkedin",
-        "title": "Linkedin"
-      },
-      {
-        "link": "#",
-        "icon": "github",
-        "title": "Github"
-      },
-      {
-        "link": "#",
-        "icon": "medium",
-        "title": "Medium.com"
-      }
-    ]
-  },
-  {
-    "nameFa": "علی ترکی",
-    "nameEn": "Ali Torki",
-    "descriptionFa": "یک برنامه نویس خلاق",
-    "descriptionEn": "A Creative Front-end Engineer",
-    "image": "https://madewithvuejs.com/uploads/02/02/image-1.png",
-    "social": [
-      {
-        "link": "#",
-        "icon": "linkedin",
-        "title": "Linkedin"
-      },
-      {
-        "link": "#",
-        "icon": "github",
-        "title": "Github"
-      },
-      {
-        "link": "#",
-        "icon": "medium",
-        "title": "Medium.com"
-      }
-    ]
-  },
-  {
-    "nameFa": "علی ترکی",
-    "nameEn": "Ali Torki",
-    "descriptionFa": "یک برنامه نویس خلاق",
-    "descriptionEn": "A Creative Front-end Engineer",
-    "image": "https://madewithvuejs.com/uploads/02/02/image-1.png",
-    "social": [
-      {
-        "link": "#",
-        "icon": "linkedin",
-        "title": "Linkedin"
-      },
-      {
-        "link": "#",
-        "icon": "github",
-        "title": "Github"
-      },
-      {
-        "link": "#",
-        "icon": "medium",
-        "title": "Medium.com"
-      }
-    ]
-  },
-  {
-    "nameFa": "علی ترکی",
-    "nameEn": "Ali Torki",
-    "descriptionFa": "یک برنامه نویس خلاق",
-    "descriptionEn": "A Creative Front-end Engineer",
-    "image": "https://madewithvuejs.com/uploads/02/02/image-1.png",
-    "social": [
-      {
-        "link": "#",
-        "icon": "linkedin",
-        "title": "Linkedin"
-      },
-      {
-        "link": "#",
-        "icon": "github",
-        "title": "Github"
-      },
-      {
-        "link": "#",
-        "icon": "medium",
-        "title": "Medium.com"
-      }
-    ]
-  },
-  {
-    "nameFa": "علی ترکی",
-    "nameEn": "Ali Torki",
-    "descriptionFa": "یک برنامه نویس خلاق",
-    "descriptionEn": "A Creative Front-end Engineer",
-    "image": "https://madewithvuejs.com/uploads/02/02/image-1.png",
-    "social": [
-      {
-        "link": "#",
-        "icon": "linkedin",
-        "title": "Linkedin"
-      },
-      {
-        "link": "#",
-        "icon": "github",
-        "title": "Github"
-      },
-      {
-        "link": "#",
-        "icon": "medium",
-        "title": "Medium.com"
-      }
-    ]
-  },
-  {
-    "nameFa": "علی ترکی",
-    "nameEn": "Ali Torki",
-    "descriptionFa": "یک برنامه نویس خلاق",
-    "descriptionEn": "A Creative Front-end Engineer",
-    "image": "https://madewithvuejs.com/uploads/02/02/image-1.png",
-    "social": [
-      {
-        "link": "#",
-        "icon": "linkedin",
-        "title": "Linkedin"
-      },
-      {
-        "link": "#",
-        "icon": "github",
-        "title": "Github"
-      },
-      {
-        "link": "#",
-        "icon": "medium",
-        "title": "Medium.com"
-      }
-    ]
-  }
+	{
+		"id": 1,
+		"nameFa": "علی ترکی",
+		"nameEn": "Ali Torki",
+		"descriptionFa": "یک برنامه نویس خلاق",
+		"descriptionEn": "A Creative Front-end Engineer",
+		"image": "https://madewithvuejs.com/uploads/02/02/image-1.png",
+		"location": "Tehran, Iran",
+		"joined_at": "1394/1/12",
+		"social": [
+			{
+				"link": "#",
+				"icon": "linkedin",
+				"title": "Linkedin"
+			},
+			{
+				"link": "#",
+				"icon": "github",
+				"title": "Github"
+			},
+			{
+				"link": "#",
+				"icon": "medium",
+				"title": "Medium.com"
+			}
+		]
+	}
 ]

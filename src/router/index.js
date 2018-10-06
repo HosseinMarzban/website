@@ -21,7 +21,12 @@ export default new Router({
 		{
 			path: "/teachers",
 			name: "Teachers",
-			component: () => import("@/components/teachers-route"),
+			component: () => import("@/routes/teachers"),
+		},
+		{
+			path: "/teachers/:id",
+			name: "Teachers-profile",
+			component: () => import("@/routes/teacher-profile"),
 		},
 	],
 });
