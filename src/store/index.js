@@ -11,6 +11,7 @@ const store = new Vuex.Store({
 	state: {
 		workshops: [],
 		teachers: [],
+		loading: true,
 	},
 	getters,
 	actions,
