@@ -18,10 +18,11 @@
 					   :key="index"
 					   target="_blank"
 					   v-for="(sc, index) in user.social"
-					   rel="nofollow"><i :class="getIconClass(sc.link)"></i></a>
+					   rel="nofollow">
+					   <i :class="getIconClass(sc.link).icon"></i>
+				   </a>
 				</div>
 			</figcaption>
-		</figure>
 		</figure>
 	</el-col>
 	<!-- End - Columns -->
@@ -31,8 +32,11 @@
 <script>
 import { mapState } from "vuex";
 
+import { getIconClass } from "@/mixins";
+
 export default {
 	name: "Users",
+	mixins: [getIconClass],
 	props: {
 		max: {
 			type: Number,
@@ -67,21 +71,6 @@ export default {
 		},
 		getConcatenated(...arg) {
 			return arg.join(" ");
-		},
-		getIconClass(link) {
-			if (link.includes("facebook.com")) {
-				return "ion-social-facebook-outline";
-			} else if (link.includes("linkedin.com")) {
-				return "ion-social-linkedin-outline";
-			} else if (link.includes("twitter.com")) {
-				return "ion-social-twitter-outline";
-			} else if (link.includes("github.com")) {
-				return "ion-social-github-outline";
-			} else if (link.includes("codepen.com")) {
-				return "ion-social-codepen-outline";
-			} else if (link.includes("telegram.com")) {
-				return "ion-social-telegram-outline";
-			}
 		},
 	},
 };

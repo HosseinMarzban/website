@@ -20,13 +20,18 @@ export default new Router({
 		},
 		{
 			path: "/users",
-			name: "Teachers",
+			name: "Users",
 			component: () => import("@/routes/users"),
 		},
 		{
 			path: "/users/:username",
 			name: "Teachers-profile",
 			component: () => import("@/routes/profile"),
+		},
+		{
+			path: "/teachers",
+			name: "Teachers",
+			component: () => import("@/routes/teachers"),
 		},
 	],
 });

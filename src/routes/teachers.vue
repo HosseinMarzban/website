@@ -1,8 +1,8 @@
 <template>
 <el-main>
-	<h2 class="route-title">همراهان و وفادارن گروه تهران جی اس</h2>
+	<h2 class="route-title">تمامی مدرسین گروه تهران جی اس</h2>
 	<el-main>
-		<Users />
+		<Users want="teachers" />
 	</el-main>
 </el-main>
 </template>

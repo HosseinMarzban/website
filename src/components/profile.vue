@@ -2,13 +2,13 @@
 <el-main>
 	<el-main class="profile-wrap" v-if="existTeacher">
 		<div class="profile-wrap__image">
-			<img src="https://avatars2.githubusercontent.com/u/9049092?s=460&v=4" border="0" />
+			<img :src="user.avatar" border="0" :alt="getConcatenated(user.name, user.lastName)" />
 		</div>
 		<div class="profile-wrap__cnt">
-			<div class="profile-wrap__name">علی ترکی</div>
-			<div class="profile-wrap__txt">Creative Front-end developer at <strong>VistaMehr</strong></div>
+			<div class="profile-wrap__name">{{ getConcatenated(user.name, user.lastName) }}</div>
+			<div class="profile-wrap__txt">{{ user.headline }}</div>
 			<div class="profile-wrap-loc">
-				<span class="profile-wrap-loc__txt">ایران٬ تهران</span>
+				<span class="profile-wrap-loc__txt">{{ user.location }}</span>
 				<span class="profile-wrap-loc__icon">
 						<i class="fa fa-map-marker-alt"></i>
 					</span>
@@ -17,64 +17,38 @@
 
 			<div class="profile-wrap-inf">
 				<div class="profile-wrap-inf__item">
-					<div class="profile-wrap-inf__title">1598</div>
+					<div class="profile-wrap-inf__title">{{ getTaughtCount(this.user.id) }}</div>
 					<div class="profile-wrap-inf__txt">مورد تدریس</div>
 				</div>
 
 				<div class="profile-wrap-inf__item">
-					<div class="profile-wrap-inf__title">65</div>
-					<div class="profile-wrap-inf__txt">روز همکاری</div>
+					<div class="profile-wrap-inf__title">{{ getLoyaltyCount(user.joined_at) }}</div>
+					<div class="profile-wrap-inf__txt">روز وفاداری</div>
 				</div>
 
 				<div class="profile-wrap-inf__item">
-					<div class="profile-wrap-inf__title">123</div>
+					<div class="profile-wrap-inf__title">{{ AttendedInClassCount(user.username) }}</div>
 					<div class="profile-wrap-inf__txt">حضور در کلاسها</div>
 				</div>
 			</div>
 			<!-- /info -->
 
 			<div class="profile-wrap-social">
-				<a href="#" class="profile-wrap-social__item github" target="_blank">
-						<span class="icon-font">
-							<i class="fab fa-github"></i>
-						</span>
-					</a>
-				<a href="#" class="profile-wrap-social__item twitter" target="_blank">
-						<span class="icon-font">
-							<i class="fab fa-twitter"></i>
-						</span>
-					</a>
-				<a href="#" class="profile-wrap-social__item facebook" target="_blank">
-						<span class="icon-font">
-							<i class="fab fa-facebook"></i>
-						</span>
-					</a>
-				<a href="#" class="profile-wrap-social__item linkedin" target="_blank">
-						<span class="icon-font">
-							<i class="fab fa-linkedin"></i>
-						</span>
-					</a>
-				<a href="#" class="profile-wrap-social__item codepen" target="_blank">
-						<span class="icon-font">
-							<i class="fab fa-codepen"></i>
-						</span>
-					</a>
-				<a href="#" class="profile-wrap-social__item email" target="_blank">
-						<span class="icon-font">
-							<i class="fas fa-at"></i>
-						</span>
-					</a>
-				<a href="#" class="profile-wrap-social__item link" target="_blank">
-						<span class="icon-font">
-							<i class="fa fa-link"></i>
-						</span>
-					</a>
+				<a :href="social.link"
+				   :key="index"
+				   target="_blank"
+				   v-for="(social, index) in user.social"
+				   :class="['profile-wrap-social__item', getIconClass(social.link).site]">
+					<span class="icon-font">
+						<i :class="getIconClass(social.link).icon"></i>
+					</span>
+				</a>
 			</div>
 		</div>
 	</el-main>
 	<!-- /profile -->
 	<el-main>
-		<h2 class="route-title">آخرین ورکشاپ های برگزار شده توسط <strong>علی ترکی</strong></h2>
+		<h2 class="route-title">آخرین ورکشاپ های برگزار شده توسط <strong>{{ getConcatenated(user.name, user.lastName) }}</strong></h2>
 		مقدار داخلی
 	</el-main>
 </el-main>
@@ -86,30 +60,54 @@ import { mapState } from "vuex";
 import find from "lodash/find";
 import isEmpty from "lodash/isEmpty";
 
+import moment from "moment-jalaali";
+
+import { getIconClass } from "@/mixins";
+
 export default {
 	name: "Profile",
+	mixins: [getIconClass],
 	props: {
 		username: {
 			type: String,
 			required: true,
-		}
+		},
 	},
 	data: () => ({
 		user: {},
-		existTeacher: true
+		existTeacher: true,
 	}),
 	computed: {
-		...mapState(["users"])
+		...mapState(["users", "workshops"]),
 	},
 	mounted() {
 		const findedUser = find(this.users, ({ username }) => username === this.username);
 
-		if(isEmpty(findedUser)) {
+		if (isEmpty(findedUser)) {
 			this.existTeacher = false;
-		}else{
+		} else {
 			this.user = findedUser;
 		}
-	}
+	},
+	methods: {
+		getTaughtCount(id) {
+			id = id ? parseInt(id, 10) : id;
+
+			return this.workshops.filter(({ author_id }) => author_id === id).length;
+		},
+		getLoyaltyCount(joined_at) {
+			const current = moment();
+			const joinedAt = moment(joined_at, "jYYYY/jM/jD");
+
+			return current.diff(joinedAt, "day");
+		},
+		AttendedInClassCount(username) {
+			return this.workshops.filter(({ interested_users }) => interested_users.includes(username)).length;
+		},
+		getConcatenated(...arg) {
+			return arg.join(" ");
+		},
+	},
 };
 </script>
 
@@ -239,9 +237,13 @@ export default {
 			background: #405de6;
 			box-shadow: 0px 7px 30px rgba(43, 98, 169, 0.5);
 			position: relative;
-			font-size: 21px;
+			font-size: 28px;
 			flex-shrink: 0;
 			transition: all 0.3s;
+
+			i {
+				padding-top: 7px;
+			}
 
 			@media screen and (max-width: 768px) {
 				width: 50px;
