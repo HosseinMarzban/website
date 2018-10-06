@@ -8,12 +8,10 @@
 </template>
 
 <script>
-import Users from "@/components/users.vue";
-
 export default {
 	name: "UsersRoute",
 	components: {
-		Users
+		Users: () => import("@/components/users.vue")
 	}
 };
 </script>
