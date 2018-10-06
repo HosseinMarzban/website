@@ -47,12 +47,10 @@ export default {
 	updated() {
 		this.updateActiveIndex();
 	},
-	mounted(){
+	mounted() {
 		this.updateActiveIndex();
 
-		this.getTeachers().then(teachers => {
-			console.log(teachers)
-		});
+		this.getTeachers();
 	},
 	methods: {
 		...mapActions(["getTeachers"]),
