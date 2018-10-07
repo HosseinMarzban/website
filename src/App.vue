@@ -52,7 +52,17 @@ export default {
 	mounted() {
 		this.updateActiveIndex();
 
+		const loading = this.$loading({
+			lock: true,
+			text: "در حال بارگذاری...",
+			spinner: "el-icon-loading",
+			background: "#f7f7f7",
+		});
+
 		Promise.all([this.getUsers(), this.getWorkshops()]).then(() => {
+			setTimeout(() => {
+				loading.close();
+			}, 1000)
 			this.setLoading(false);
 		});
 	},

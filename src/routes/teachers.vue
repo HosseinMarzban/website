@@ -11,8 +11,8 @@
 export default {
 	name: "UsersRoute",
 	components: {
-		Users: () => import("@/components/users.vue")
-	}
+		Users: () => import("@/components/users.vue"),
+	},
 };
 </script>
 

@@ -17,7 +17,7 @@ module.exports = {
 	extends: [
 		// https://github.com/vuejs/eslint-plugin-vue#priority-a-essential-error-prevention
 		// consider switching to `plugin:vue/strongly-recommended` or `plugin:vue/recommended` for stricter rules.
-		"plugin:vue/recommended",
+		"plugin:vue/base",
 		// https://github.com/standard/standard/blob/master/docs/RULES-en.md
 		"standard",
 		"prettier",
@@ -26,6 +26,17 @@ module.exports = {
 	plugins: ["vue"],
 	// add your custom rules here
 	rules: {
+		camelcase: "off",
+		"vue/html-indent": [
+			"warn",
+			"tab",
+			{
+				attribute: 2,
+				closeBracket: 1,
+				alignAttributesVertically: true,
+				ignores: [],
+			},
+		],
 		"space-before-function-paren": "off",
 		// allow async-await
 		"generator-star-spacing": "off",
@@ -70,12 +81,7 @@ module.exports = {
 		"no-mixed-operators": [
 			"warn",
 			{
-				groups: [
-					["&", "|", "^", "~", "<<", ">>", ">>>"],
-					["==", "!=", "===", "!==", ">", ">=", "<", "<="],
-					["&&", "||"],
-					["in", "instanceof"],
-				],
+				groups: [["&", "|", "^", "~", "<<", ">>", ">>>"], ["==", "!=", "===", "!==", ">", ">=", "<", "<="], ["&&", "||"], ["in", "instanceof"]],
 				allowSamePrecedence: false,
 			},
 		],
@@ -153,14 +159,12 @@ module.exports = {
 			{
 				object: "require",
 				property: "ensure",
-				message:
-					"Please use import() instead. More info: https://webpack.js.org/guides/code-splitting/",
+				message: "Please use import() instead. More info: https://webpack.js.org/guides/code-splitting/",
 			},
 			{
 				object: "System",
 				property: "import",
-				message:
-					"Please use import() instead. More info: https://webpack.js.org/guides/code-splitting/",
+				message: "Please use import() instead. More info: https://webpack.js.org/guides/code-splitting/",
 			},
 		],
 		"getter-return": "warn",

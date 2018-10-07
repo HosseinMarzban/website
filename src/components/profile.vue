@@ -1,8 +1,10 @@
 <template>
 <el-main>
-	<el-main class="profile-wrap" v-if="existTeacher">
+	<el-main v-if="existTeacher" class="profile-wrap">
 		<div class="profile-wrap__image">
-			<img :src="user.avatar" border="0" :alt="getConcatenated(user.name, user.lastName)" />
+			<img :src="user.avatar"
+			     :alt="getConcatenated(user.name, user.lastName)"
+			     border="0">
 		</div>
 		<div class="profile-wrap__cnt">
 			<div class="profile-wrap__name">{{ getConcatenated(user.name, user.lastName) }}</div>
@@ -10,46 +12,47 @@
 			<div class="profile-wrap-loc">
 				<span class="profile-wrap-loc__txt">{{ user.location }}</span>
 				<span class="profile-wrap-loc__icon">
-						<i class="fa fa-map-marker-alt"></i>
+						<i class="fa fa-map-marker-alt"/>
 					</span>
 			</div>
 			<!-- /location -->
 
 			<div class="profile-wrap-inf">
 				<div class="profile-wrap-inf__item">
-					<div class="profile-wrap-inf__title">{{ getTaughtCount(this.user.id) }}</div>
+					<div class="profile-wrap-inf__title">{{ getTaughtCount(user.id) | toFa }}</div>
 					<div class="profile-wrap-inf__txt">مورد تدریس</div>
 				</div>
 
 				<div class="profile-wrap-inf__item">
-					<div class="profile-wrap-inf__title">{{ getLoyaltyCount(user.joined_at) }}</div>
+					<div class="profile-wrap-inf__title">{{ getLoyaltyCount(user.joined_at) | toFa }}</div>
 					<div class="profile-wrap-inf__txt">روز وفاداری</div>
 				</div>
 
 				<div class="profile-wrap-inf__item">
-					<div class="profile-wrap-inf__title">{{ AttendedInClassCount(user.username) }}</div>
+					<div class="profile-wrap-inf__title">{{ AttendedInClassCount(user.username) | toFa }}</div>
 					<div class="profile-wrap-inf__txt">حضور در کلاسها</div>
 				</div>
 			</div>
 			<!-- /info -->
 
 			<div class="profile-wrap-social">
-				<a :href="social.link"
+				<a v-for="(social, index) in user.social"
+				   :href="social.link"
 				   :key="index"
-				   target="_blank"
-				   v-for="(social, index) in user.social"
-				   :class="['profile-wrap-social__item', getIconClass(social.link).site]">
-					<span class="icon-font">
-						<i :class="getIconClass(social.link).icon"></i>
-					</span>
-				</a>
+				   :class="['profile-wrap-social__item', getIconClass(social.link).site]"
+				   target="_blank">
+						<span class="icon-font">
+							<i :class="getIconClass(social.link).icon"/>
+						</span>
+					</a>
 			</div>
 		</div>
 	</el-main>
 	<!-- /profile -->
 	<el-main>
 		<h2 class="route-title">آخرین ورکشاپ های برگزار شده توسط <strong>{{ getConcatenated(user.name, user.lastName) }}</strong></h2>
-		مقدار داخلی
+
+		<Workshops :orderBy="user.id" />
 	</el-main>
 </el-main>
 </template>
@@ -62,16 +65,19 @@ import isEmpty from "lodash/isEmpty";
 
 import moment from "moment-jalaali";
 
-import { getIconClass } from "@/mixins";
+import { getIconClass, digits } from "@/mixins";
 
 export default {
 	name: "Profile",
-	mixins: [getIconClass],
+	mixins: [getIconClass, digits],
 	props: {
 		username: {
 			type: String,
-			required: true,
+			default: null,
 		},
+	},
+	components: {
+		Workshops: () => import("@/components/workshops"),
 	},
 	data: () => ({
 		user: {},
@@ -81,15 +87,19 @@ export default {
 		...mapState(["users", "workshops"]),
 	},
 	mounted() {
-		const findedUser = find(this.users, ({ username }) => username === this.username);
-
-		if (isEmpty(findedUser)) {
-			this.existTeacher = false;
-		} else {
-			this.user = findedUser;
-		}
+		this.prepareUser();
 	},
 	methods: {
+		prepareUser() {
+			const currentUsername = this.username || this.$route.params.username;
+			const findedUser = find(this.users, ({ username }) => username === currentUsername);
+
+			if (isEmpty(findedUser)) {
+				this.existTeacher = false;
+			} else {
+				this.user = findedUser;
+			}
+		},
 		getTaughtCount(id) {
 			id = id ? parseInt(id, 10) : id;
 
@@ -114,7 +124,7 @@ export default {
 <style lang="scss" scoped>
 .profile-wrap {
 	min-height: 460px;
-	margin: 70px auto;
+	margin: 70px 10px 30px 10px;
 	box-shadow: 0px 8px 60px -10px rgba(13, 28, 39, 0.6);
 	background: #fff;
 	border-radius: 12px;

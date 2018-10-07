@@ -6,16 +6,16 @@
 
 <script>
 export default {
-	name: "Route-Profile",
+	name: "RouteProfile",
 	components: {
-		Profile: () => import("@/components/profile")
+		Profile: () => import("@/components/profile"),
 	},
 	data: () => ({
-		username: null
+		username: null,
 	}),
-	mounted() {
+	updated() {
 		this.username = this.$route.params.username;
-	}
+	},
 };
 </script>
 

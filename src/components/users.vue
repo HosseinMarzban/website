@@ -1,26 +1,32 @@
 <template>
 <el-row :gutter="64">
-	<el-col v-for="(user, index) in usersList" :xs="24" :sm="12" :md="8" :lg="8" :xl="8" :key="index">
-		<figure class="profile-card" v-on:click.prevent="goTo(user.username)">
-			<img src="https://avatars2.githubusercontent.com/u/9049092?s=460&v=4"
-			     :alt="getConcatenated(user.name, user.lastName)"
-			     class="background" />
-			<img src="https://avatars2.githubusercontent.com/u/9049092?s=460&v=4"
-			     :alt="getConcatenated(user.name, user.lastName)"
-			     class="profile" />
+	<el-col v-for="(user, index) in usersList"
+	        :xs="24"
+	        :sm="12"
+	        :md="8"
+	        :lg="8"
+	        :xl="8"
+	        :key="index">
+		<figure class="profile-card" @click.prevent="goTo(user.username)">
+			<img :alt="getConcatenated(user.name, user.lastName)"
+			     src="https://avatars2.githubusercontent.com/u/9049092?s=460&v=4"
+			     class="background">
+			<img :alt="getConcatenated(user.name, user.lastName)"
+			     src="https://avatars2.githubusercontent.com/u/9049092?s=460&v=4"
+			     class="profile">
 			<figcaption>
 				<h3 class="headline">
 					{{ getConcatenated(user.name, user.lastName) }}
 					<span>{{ user.headline }}</span>
 				</h3>
 				<div class="social-icons">
-					<a :href="sc.link"
+					<a v-for="(sc, index) in user.social"
+					   :href="sc.link"
 					   :key="index"
 					   target="_blank"
-					   v-for="(sc, index) in user.social"
 					   rel="nofollow">
-					   <i :class="getIconClass(sc.link).icon"></i>
-				   </a>
+							<i :class="getIconClass(sc.link).icon"/>
+						</a>
 				</div>
 			</figcaption>
 		</figure>
@@ -41,6 +47,7 @@ export default {
 		max: {
 			type: Number,
 			required: false,
+			default: null,
 		},
 		want: {
 			type: String,
@@ -50,6 +57,9 @@ export default {
 	data: () => ({
 		usersList: [],
 	}),
+	computed: {
+		...mapState(["users"]),
+	},
 	mounted() {
 		this.usersList = this.users.slice();
 
@@ -61,9 +71,6 @@ export default {
 		if (this.max) {
 			this.usersList = this.usersList.slice(0, this.max);
 		}
-	},
-	computed: {
-		...mapState(["users"]),
 	},
 	methods: {
 		goTo(username) {

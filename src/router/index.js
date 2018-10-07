@@ -33,5 +33,15 @@ export default new Router({
 			name: "Teachers",
 			component: () => import("@/routes/teachers"),
 		},
+		{
+			path: "/workshops",
+			name: "Workshops",
+			component: () => import("@/routes/workshops"),
+		},
+		{
+			path: "/workshops/:title",
+			name: "Workshops-Details",
+			component: () => import("@/routes/details"),
+		},
 	],
 });

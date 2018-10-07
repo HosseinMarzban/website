@@ -1,3 +1,5 @@
+import { digitsEnToFa, digitsFaToEn } from "persian-tools";
+
 export const getIconClass = {
 	methods: {
 		getIconClass(link) {
@@ -28,5 +30,13 @@ export const getIconClass = {
 				};
 			}
 		},
+	},
+};
+
+// digits
+export const digits = {
+	filters: {
+		toFa: value => (value ? digitsEnToFa(value) : value),
+		toEn: value => (value ? digitsFaToEn(value) : value),
 	},
 };
