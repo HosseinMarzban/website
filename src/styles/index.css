@@ -1,5 +1,6 @@
 @import "./transitions.css";
 @import "./fonts.css";
+@import "./display.css";
 
 :root {
 	--blue: #007bff;
@@ -42,6 +43,16 @@ a:hover {
 a:focus {
 	outline: 5px auto -webkit-focus-ring-color;
 	outline-offset: -2px;
+}
+
+.red {
+	color: #f56c6c !important;
+}
+
+.clearfix:after {
+	content: "";
+	clear: both;
+	display: table;
 }
 
 figure {
@@ -100,7 +111,9 @@ body {
 	padding: 0;
 	background-color: #f5f6fa;
 	font-size: 16px;
-	color: #5b5c6a;
+	color: #003662;
+	direction: rtl;
+	text-align: right;
 }
 
 body #webpack-hot-middleware-clientOverlay {
@@ -110,9 +123,12 @@ body #webpack-hot-middleware-clientOverlay {
 .app-main {
 	text-align: right;
 	margin-top: 60px;
-	/* box-shadow: 0 23px 51px rgba(0, 0, 0, 0.08); */
-	/* border-radius: 10px;
-  background-color: #fff; */
+}
+
+.rounded-shadox-box {
+	box-shadow: 0 23px 51px rgba(0, 0, 0, 0.08);
+	border-radius: 10px;
+	background-color: #fff;
 }
 
 .route-title {

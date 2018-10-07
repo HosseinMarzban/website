@@ -3,6 +3,7 @@
 		"id": 1,
 		"title": "آموزش مقدماتی redux و react",
 		"description": "آموزش در سطح مقدماتی و متوسط ریداکس و وب پک در ۲ ساعت",
+		"fullDescription": "<p>&nbsp;</p><p>آنچه که خواهیم گفت:</p><p><strong>Server Side:</strong></p><ul><li>Babel چیست؟</li><li>پیکربندی&nbsp;Babel و Node.js برای شروع پروژه.</li><li>چگونه با Node.js میشود REST API نوشت؟</li><li>نوشتن اولین API با express.js در Node.js.</li><li>Redis چیست و مکانیزم کار آن چیست؟</li><li>چگونه میشود از Redis در محیط Node.js استفاده کرد؟</li></ul><p><strong>این توضیحات کاملتر خواهند شد!</strong></p>",
 		"author_id": 1,
 		"date_begin": "1397/07/02",
 		"created_at": "1397/06/27",

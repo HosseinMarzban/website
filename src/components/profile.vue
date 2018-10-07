@@ -1,50 +1,50 @@
 <template>
-<el-main>
-	<el-main v-if="existTeacher" class="profile-wrap">
-		<div class="profile-wrap__image">
-			<img :src="user.avatar"
-			     :alt="getConcatenated(user.name, user.lastName)"
-			     border="0">
-		</div>
-		<div class="profile-wrap__cnt">
-			<div class="profile-wrap__name">{{ getConcatenated(user.name, user.lastName) }}</div>
-			<div class="profile-wrap__txt">{{ user.headline }}</div>
-			<div class="profile-wrap-loc">
-				<span class="profile-wrap-loc__txt">{{ user.location }}</span>
-				<span class="profile-wrap-loc__icon">
+	<el-main>
+		<el-main v-if="existTeacher" class="profile-wrap">
+			<div class="profile-wrap__image">
+				<img :src="user.avatar"
+				:alt="getConcatenated(user.name, user.lastName)"
+				border="0">
+			</div>
+			<div class="profile-wrap__cnt">
+				<div class="profile-wrap__name">{{ getConcatenated(user.name, user.lastName) }}</div>
+				<div class="profile-wrap__txt">{{ user.headline }}</div>
+				<div class="profile-wrap-loc">
+					<span class="profile-wrap-loc__icon">
 						<i class="fa fa-map-marker-alt"/>
 					</span>
-			</div>
-			<!-- /location -->
-
-			<div class="profile-wrap-inf">
-				<div class="profile-wrap-inf__item">
-					<div class="profile-wrap-inf__title">{{ getTaughtCount(user.id) | toFa }}</div>
-					<div class="profile-wrap-inf__txt">مورد تدریس</div>
+					<span class="profile-wrap-loc__txt">{{ user.location }}</span>
 				</div>
+				<!-- /location -->
 
-				<div class="profile-wrap-inf__item">
-					<div class="profile-wrap-inf__title">{{ getLoyaltyCount(user.joined_at) | toFa }}</div>
-					<div class="profile-wrap-inf__txt">روز وفاداری</div>
+				<div class="profile-wrap-inf">
+					<div class="profile-wrap-inf__item">
+						<div class="profile-wrap-inf__title">{{ getTaughtCount(user.id) | toFa }}</div>
+						<div class="profile-wrap-inf__txt">مورد تدریس</div>
+					</div>
+
+					<div class="profile-wrap-inf__item">
+						<div class="profile-wrap-inf__title">{{ getLoyaltyCount(user.joined_at) | toFa }}</div>
+						<div class="profile-wrap-inf__txt">روز وفاداری</div>
+					</div>
+
+					<div class="profile-wrap-inf__item">
+						<div class="profile-wrap-inf__title">{{ AttendedInClassCount(user.username) | toFa }}</div>
+						<div class="profile-wrap-inf__txt">حضور در کلاسها</div>
+					</div>
 				</div>
+				<!-- /info -->
 
-				<div class="profile-wrap-inf__item">
-					<div class="profile-wrap-inf__title">{{ AttendedInClassCount(user.username) | toFa }}</div>
-					<div class="profile-wrap-inf__txt">حضور در کلاسها</div>
-				</div>
-			</div>
-			<!-- /info -->
-
-			<div class="profile-wrap-social">
-				<a v-for="(social, index) in user.social"
-				   :href="social.link"
-				   :key="index"
-				   :class="['profile-wrap-social__item', getIconClass(social.link).site]"
-				   target="_blank">
-						<span class="icon-font">
-							<i :class="getIconClass(social.link).icon"/>
-						</span>
-					</a>
+				<div class="profile-wrap-social">
+					<a v-for="(social, index) in user.social"
+					:href="social.link"
+					:key="index"
+					:class="['profile-wrap-social__item', getIconClass(social.link).site]"
+					target="_blank">
+					<span class="icon-font">
+						<i :class="getIconClass(social.link).icon"/>
+					</span>
+				</a>
 			</div>
 		</div>
 	</el-main>

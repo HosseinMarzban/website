@@ -1,19 +1,19 @@
 <template>
 <el-row :gutter="64">
 	<el-col :xs="24" :sm="12" :md="8" :lg="8" :xl="8" v-for="(workshop, index) in workshopsList" :key="index">
-		<div class="brick" v-on:click.prevent="goTo(workshop.name)">
+		<div class="brick" v-on:click.prevent="goTo(workshop.title)">
 			<div class="brick__image">
 				<div class="brick__image-inner" :style="{backgroundImage: 'url('+ workshop.image +')'}"></div>
 				<div class="brick__hover ">
 					<div class="brick__hover-action-wrap">
-						<router-link :to="'/workshops/' + getURL(workshop.name)" class="brick__hover-action icon-icon-external"></router-link>
+						<router-link :to="`/workshops/${getURL(workshop.title)}`" class="brick__hover-action icon-icon-external"></router-link>
 					</div>
 				</div>
 			</div>
 			<!-- End - Brick/image -->
 			<div class="brick__caption">
 				<div class="brick__caption-upper">
-					<a href="#" class="brick__title">{{workshop.name}}</a>
+					<a href="#" class="brick__title">{{workshop.title}}</a>
 					<span class="brick__tagline">{{workshop.description}}</span>
 				</div>
 				<!-- End - Caption/upper -->
