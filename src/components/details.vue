@@ -37,9 +37,7 @@
 				<div class="workshop-details__desc clearfix">
 					<h3 class="route-title">توضیحات کامل:</h3>
 					<div class="workshop-details__desc-content">
-						<div>
-							{{workshop.fullDescription}}
-						</div>
+						<div v-html="workshop.fullDescription"></div>
 					</div>
 					<!-- /content -->
 				</div>
@@ -97,19 +95,21 @@ export default {
 	props: {
 		title: {
 			type: String,
-			required: true,
+			default: "",
 		},
 	},
 	computed: {
 		...mapState(["users", "workshops"]),
 	},
 	mounted() {
+
 		this.boot();
 	},
 	methods: {
 		boot() {
-			if (this.title) {
-				const findedWorkshop = this.workshops.find(({ title }) => title === this.cleanTitle(this.title));
+			const workshopTitle = this.title || this.$route.params.title;
+			if (workshopTitle) {
+				const findedWorkshop = this.workshops.find(({ title }) => title === this.cleanTitle(workshopTitle));
 
 				if (findedWorkshop) {
 					this.workshop = findedWorkshop;
@@ -117,7 +117,7 @@ export default {
 					this.interested_users = this.prepareInterstedUsers(this.workshop.interested_users);
 
 					// check expired
-					this.expired = this.getDiffDays(this.workshop.date_begin);
+					this.expired = this.getDiffDays(this.workshop.date_begin).expired;
 				}
 			}
 		},
