@@ -50,7 +50,7 @@
 	</el-main>
 	<!-- /profile -->
 	<el-main>
-		<h2 class="route-title">آخرین ورکشاپ های برگزار شده توسط <strong>{{ getConcatenated(user.name, user.lastName) }}</strong></h2>
+		<h2 class="route-title">آخرین کارگاه های برگزار شده توسط <strong>{{ getConcatenated(user.name, user.lastName) }}</strong></h2>
 
 		<Workshops :orderBy="user.id" />
 	</el-main>

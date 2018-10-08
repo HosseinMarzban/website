@@ -11,7 +11,7 @@
 				         active-text-color="#FFF">
 					<el-menu-item index="/">خانه</el-menu-item>
 					<el-menu-item index="/about">درباره ما</el-menu-item>
-					<el-menu-item index="/workshops">ورکشاپ ها</el-menu-item>
+					<el-menu-item index="/workshops">کارگاه ها</el-menu-item>
 					<el-menu-item index="/teachers">مدرسین</el-menu-item>
 					<el-menu-item index="/users">همراهان ما</el-menu-item>
 				</el-menu>
