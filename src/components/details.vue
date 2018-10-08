@@ -52,6 +52,9 @@
 				<div class="workshop-details__image">
 					<img :src="workshop.image" alt="#" border="0" />
 				</div>
+				<div class="workshop-details__register-btn" v-if="!expired">
+					<el-button type="success" round v-on:click.prevent="redirectTo(workshop.register_link)">ثبت نام در کارگاه</el-button>
+				</div>
 				<div class="workshop-details__users">
 					<h3 class="route-title">شرکت کنندگان:</h3>
 					<div class="workshop-details__users-block">
@@ -102,7 +105,6 @@ export default {
 		...mapState(["users", "workshops"]),
 	},
 	mounted() {
-
 		this.boot();
 	},
 	methods: {
@@ -122,7 +124,7 @@ export default {
 			}
 		},
 		prepareTeacher() {
-			return this.users.find(({ id }) => id == this.workshop.author_id);
+			return this.users.find(({ id }) => id == this.workshop.author_id); // eslint-disable-line eqeqeq
 		},
 		prepareInterstedUsers(intUsers) {
 			intUsers = intUsers.map(intUsername => {
@@ -140,6 +142,9 @@ export default {
 		cleanTitle(title) {
 			return title.split("-").join(" ");
 		},
+		redirectTo(path) {
+			window.location = path;
+		}
 	},
 };
 </script>
@@ -200,6 +205,15 @@ export default {
 		}
 	} // information
 
+	&__register-btn{
+		margin-top: 50px;
+
+		button {
+			display: block;
+			width: 100%;
+		}
+	}
+
 	&__desc {
 		margin-top: 60px;
 	} // description
@@ -244,7 +258,7 @@ export default {
 		.el-tag + .el-tag {
 			margin-left: 10px;
 		}
-	}
+	} // tags
 }
 
 .alert-expired {
