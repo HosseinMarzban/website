@@ -62,8 +62,8 @@ export default {
 		Promise.all([this.getUsers(), this.getWorkshops()]).then(() => {
 			setTimeout(() => {
 				loading.close();
-			}, 1000)
-			this.setLoading(false);
+				this.setLoading(false);
+			}, 1000);
 		});
 	},
 	methods: {

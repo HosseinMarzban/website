@@ -28,7 +28,7 @@ module.exports = {
 	rules: {
 		camelcase: "off",
 		"vue/html-indent": [
-			"warn",
+			"off",
 			"tab",
 			{
 				attribute: 2,
